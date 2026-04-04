@@ -1,0 +1,22 @@
+{
+  "$schema": "https://developers.cloudflare.com/pages/platform/build-configuration/",
+  "build": {
+    "command": "yarn build",
+    "cwd": "frontend",
+    "watch_paths": [
+      "frontend/src/**/*.{js,jsx,ts,tsx,css}",
+      "frontend/public/**/*"
+    ]
+  },
+  "preview": {
+    "command": "yarn build",
+    "cwd": "frontend"
+  },
+  "deployment": {
+    "output_directory": "frontend/build",
+    "environment_variables": {
+      "NODE_VERSION": "18",
+      "YARN_VERSION": "1.22.22"
+    }
+  }
+}
