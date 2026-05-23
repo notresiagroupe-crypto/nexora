@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dupont Plomberie — Artisan Plombier Bordeaux</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:#f8f9fb;color:#1a2030;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #e8edf3;box-shadow:0 2px 20px rgba(0,0,0,.04)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:36px;height:36px;background:#1e40af;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.logo-text{font-weight:800;font-size:1rem;color:#1a2030}
+.logo-text span{color:#1e40af}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:.8rem;font-weight:500;color:rgba(26,32,48,.5);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#1e40af}
+.btn-call{background:#1e40af;color:#fff;padding:9px 20px;border-radius:8px;font-size:.78rem;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:7px;transition:all .2s}
+.btn-call:hover{background:#1d3a9e;box-shadow:0 4px 16px rgba(30,64,175,.25)}
+
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#1e40af 100%);padding:120px 40px 80px;position:relative;overflow:hidden}
+.hero-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.04) 1px,transparent 0);background-size:24px 24px}
+.hero-content{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:6px 16px;font-size:.7rem;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:.5px;margin-bottom:20px}
+.green-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px rgba(34,197,94,.5)}
+h1{font-size:clamp(2.2rem,4vw,3.4rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:16px}
+h1 span{color:#60a5fa}
+.hero-desc{font-size:.92rem;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.btn-white{background:#fff;color:#1e40af;padding:13px 26px;border-radius:9px;font-size:.84rem;font-weight:700;text-decoration:none;transition:all .2s}
+.btn-white:hover{box-shadow:0 6px 20px rgba(255,255,255,.2)}
+.btn-outline-w{border:2px solid rgba(255,255,255,.25);color:#fff;padding:13px 26px;border-radius:9px;font-size:.84rem;font-weight:600;text-decoration:none;transition:all .2s}
+.btn-outline-w:hover{border-color:rgba(255,255,255,.6)}
+.trust-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:.76rem;color:rgba(255,255,255,.5);font-weight:500}
+.trust-item::before{content:'✓';color:#22c55e;font-weight:700}
+
+.hero-right .urgent-card{background:rgba(255,255,255,.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px}
+.urgent-title{font-size:.7rem;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.service-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.service-row:last-child{border:none}
+.svc-left{display:flex;align-items:center;gap:12px}
+.svc-icon2{width:34px;height:34px;background:rgba(255,255,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.svc-name2{font-size:.84rem;font-weight:600;color:#fff}
+.svc-time{font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px}
+.svc-price2{font-size:.82rem;font-weight:700;color:#60a5fa}
+.book-btn{width:100%;background:#fff;color:#1e40af;padding:14px;border-radius:12px;font-family:'Manrope',sans-serif;font-size:.88rem;font-weight:800;border:none;cursor:pointer;margin-top:20px;transition:all .2s}
+.book-btn:hover{box-shadow:0 6px 20px rgba(255,255,255,.2)}
+
+section{padding:72px 40px}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{font-size:.68rem;font-weight:700;color:#1e40af;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;margin-bottom:10px}
+.section-sub{font-size:.9rem;color:rgba(26,32,48,.5);line-height:1.7}
+
+.services-white{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:40px}
+.svc-card{background:#fff;border:1px solid #e8edf3;border-radius:16px;padding:26px;transition:all .3s}
+.svc-card:hover{box-shadow:0 8px 32px rgba(30,64,175,.08);border-color:rgba(30,64,175,.2);transform:translateY(-2px)}
+.svc-card-icon{width:44px;height:44px;background:#eff6ff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:16px}
+.svc-card-name{font-size:.95rem;font-weight:700;margin-bottom:8px}
+.svc-card-desc{font-size:.8rem;color:rgba(26,32,48,.5);line-height:1.7}
+.svc-card-link{font-size:.76rem;font-weight:700;color:#1e40af;margin-top:14px;display:flex;align-items:center;gap:5px;text-decoration:none}
+
+.guarantees{background:#1e40af;padding:56px 40px;margin:0 -40px}
+.g-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.g-item{text-align:center;padding:20px}
+.g-icon{font-size:2rem;margin-bottom:12px}
+.g-title{font-weight:700;font-size:.95rem;color:#fff;margin-bottom:6px}
+.g-desc{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.6}
+
+footer{background:#0f172a;padding:40px;text-align:center}
+.footer-logo{font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:6px}
+.footer-logo span{color:#60a5fa}
+.footer-sub{font-size:.74rem;color:rgba(255,255,255,.3)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo"><div class="logo-icon">🔧</div><div class="logo-text">Dupont <span>Plomberie</span></div></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Urgences</a></li>
+    <li><a href="#">Devis</a></li>
+    <li><a href="#">Avis</a></li>
+  </ul>
+  <a href="tel:0556000000" class="btn-call">📞 05 56 00 00 00</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge"><span class="green-dot"></span>Disponible 7j/7 · 24h/24</div>
+      <h1>Plombier <span>Bordeaux</span><br>Intervention rapide</h1>
+      <p class="hero-desc">Urgence fuite, débouchage, installation chaudière… Intervention en moins d'une heure sur Bordeaux et sa métropole. Devis gratuit et transparent.</p>
+      <div class="hero-btns">
+        <a href="tel:0556000000" class="btn-white">📞 Appeler maintenant</a>
+        <a href="#" class="btn-outline-w">Devis gratuit →</a>
+      </div>
+      <div class="trust-row">
+        <span class="trust-item">Artisan certifié RGE</span>
+        <span class="trust-item">Devis gratuit</span>
+        <span class="trust-item">Garantie 2 ans</span>
+        <span class="trust-item">4.9★ sur Google</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="urgent-card">
+        <div class="urgent-title">⚡ Interventions d'urgence</div>
+        <div class="service-row"><div class="svc-left"><div class="svc-icon2">💧</div><div><div class="svc-name2">Fuite d'eau</div><div class="svc-time">Intervention ≤ 1h</div></div></div><div class="svc-price2">Dès 89€</div></div>
+        <div class="service-row"><div class="svc-left"><div class="svc-icon2">🚿</div><div><div class="svc-name2">Débouchage</div><div class="svc-time">Intervention ≤ 2h</div></div></div><div class="svc-price2">Dès 79€</div></div>
+        <div class="service-row"><div class="svc-left"><div class="svc-icon2">🔥</div><div><div class="svc-name2">Chauffe-eau HS</div><div class="svc-time">Intervention ≤ 3h</div></div></div><div class="svc-price2">Dès 129€</div></div>
+        <div class="service-row"><div class="svc-left"><div class="svc-icon2">❄️</div><div><div class="svc-name2">Chaudière HS</div><div class="svc-time">Intervention ≤ 4h</div></div></div><div class="svc-price2">Dès 149€</div></div>
+        <button class="book-btn">📅 Demander une intervention</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="section-tag">Nos prestations</div>
+    <h2>Tous vos travaux de plomberie</h2>
+    <p class="section-sub">De la petite réparation à la rénovation complète de salle de bain, nous intervenons sur tous types de travaux.</p>
+    <div class="services-white">
+      <div class="svc-card"><div class="svc-card-icon">🛁</div><div class="svc-card-name">Salle de bain</div><p class="svc-card-desc">Rénovation complète, pose de baignoire, douche à l'italienne, carrelage.</p><a href="#" class="svc-card-link">En savoir plus →</a></div>
+      <div class="svc-card"><div class="svc-card-icon">🔥</div><div class="svc-card-name">Chauffage</div><p class="svc-card-desc">Installation, entretien et dépannage chaudière gaz, pompe à chaleur, radiateurs.</p><a href="#" class="svc-card-link">En savoir plus →</a></div>
+      <div class="svc-card"><div class="svc-card-icon">💧</div><div class="svc-card-name">Sanitaires</div><p class="svc-card-desc">Pose WC, robinetterie, évier, lave-mains. Réparation de fuites et joints.</p><a href="#" class="svc-card-link">En savoir plus →</a></div>
+      <div class="svc-card"><div class="svc-card-icon">🏗️</div><div class="svc-card-name">Rénovation</div><p class="svc-card-desc">Mise aux normes, remplacement tuyauterie ancienne, traitement anti-calcaire.</p><a href="#" class="svc-card-link">En savoir plus →</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="guarantees">
+  <div class="g-grid">
+    <div class="g-item"><div class="g-icon">⚡</div><div class="g-title">Intervention rapide</div><p class="g-desc">En moins d'1 heure sur Bordeaux pour les urgences, 7j/7 y compris jours fériés</p></div>
+    <div class="g-item"><div class="g-icon">💰</div><div class="g-title">Devis gratuit</div><p class="g-desc">Estimation transparente avant toute intervention, sans surprise sur la facture finale</p></div>
+    <div class="g-item"><div class="g-icon">🏅</div><div class="g-title">Artisan certifié</div><p class="g-desc">Qualibat, RGE et assurance décennale. Votre tranquillité d'esprit est notre priorité</p></div>
+    <div class="g-item"><div class="g-icon">🔒</div><div class="g-title">Garantie 2 ans</div><p class="g-desc">Toutes nos interventions sont garanties 2 ans pièces et main d'œuvre</p></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Dupont <span>Plomberie</span></div>
+  <div class="footer-sub">Bordeaux Métropole · 05 56 00 00 00 · contact@dupont-plomberie.fr</div>
+</footer>
+</body>
+</html>
