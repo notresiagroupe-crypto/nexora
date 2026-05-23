@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA Studio — Agence Web & IA · Bordeaux</title>
+<meta name="description" content="Agence web et automatisation IA à Bordeaux. Sites web premium, chatbots IA, stratégie digitale pour PME. Résultats mesurables.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #060608;
+  --dark: #0d0d12;
+  --card: #111118;
+  --border: #1e1e2e;
+  --gold: #f0c040;
+  --gold2: #ffd700;
+  --white: #f4f4f6;
+  --muted: #6b6b85;
+  --glow: rgba(240,192,64,0.18);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+
+/* ── CUSTOM CURSOR ───────────────────────────── */
+.cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;mix-blend-mode:difference}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .12s ease;opacity:.5}
+
+/* ── NAV ─────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .3s}
+nav.scrolled{background:rgba(6,6,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 40px}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;color:var(--white)}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.5px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:#000;padding:9px 22px;border-radius:100px;font-size:.8rem;font-weight:700;text-decoration:none;letter-spacing:.5px;text-transform:uppercase;transition:all .2s;white-space:nowrap}
+.nav-cta:hover{background:var(--gold2);box-shadow:0 0 24px rgba(240,192,64,.5)}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.nav-burger span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
+
+/* ── HERO ────────────────────────────────────── */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 40px 80px}
+
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg::before{content:'';position:absolute;top:-20%;left:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(240,192,64,.12) 0%,transparent 70%);animation:pulse 6s ease-in-out infinite}
+.hero-bg::after{content:'';position:absolute;bottom:-20%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(240,192,64,.07) 0%,transparent 70%);animation:pulse 8s ease-in-out infinite reverse}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.1);opacity:1}}
+
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(240,192,64,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(240,192,64,.03) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 20s linear infinite}
+@keyframes gridMove{0%{background-position:0 0}100%{background-position:60px 60px}}
+
+.hero-inner{position:relative;z-index:1;text-align:center;max-width:900px;margin:0 auto}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.2);border-radius:100px;padding:7px 18px;font-size:.75rem;font-weight:600;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;animation:fadeUp .8s ease both}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,9rem);line-height:.92;letter-spacing:2px;margin-bottom:6px;animation:fadeUp .8s .1s ease both}
+.hero-title .line1{display:block;color:var(--white)}
+.hero-title .line2{display:block;color:var(--gold);text-shadow:0 0 60px rgba(240,192,64,.4),0 0 120px rgba(240,192,64,.2)}
+.hero-title .line3{display:block;color:var(--white);font-size:clamp(1.5rem,5vw,3.5rem);letter-spacing:6px;margin-top:8px}
+
+.hero-sub{font-size:clamp(.95rem,2vw,1.15rem);color:var(--muted);line-height:1.7;max-width:560px;margin:24px auto 40px;font-weight:300;animation:fadeUp .8s .2s ease both}
+.hero-sub strong{color:var(--white);font-weight:600}
+
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .3s ease both}
+.btn-primary{background:var(--gold);color:#000;padding:14px 32px;border-radius:100px;font-weight:700;font-size:.9rem;text-decoration:none;letter-spacing:.5px;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--gold2);box-shadow:0 0 40px rgba(240,192,64,.5);transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid var(--border);color:var(--white);padding:14px 32px;border-radius:100px;font-weight:500;font-size:.9rem;text-decoration:none;letter-spacing:.5px;transition:all .25s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:64px;padding-top:40px;border-top:1px solid var(--border);flex-wrap:wrap;animation:fadeUp .8s .4s ease both}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--gold);line-height:1;display:block}
+.stat-l{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SCROLL INDICATOR ────────────────────────── */
+.scroll-ind{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1;animation:fadeUp .8s .6s ease both}
+.scroll-ind span{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:2px}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollLine 2s ease infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ── SECTIONS ────────────────────────────────── */
+section{padding:100px 40px}
+.section-tag{font-size:.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-tag::before{content:'';width:30px;height:1px;background:var(--gold)}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1;letter-spacing:1px;margin-bottom:16px}
+.section-sub{font-size:1rem;color:var(--muted);line-height:1.7;max-width:560px;font-weight:300}
+.container{max-width:1160px;margin:0 auto}
+
+/* ── SERVICES ────────────────────────────────── */
+#services{background:var(--dark)}
+.services-header{margin-bottom:60px}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.svc-card{background:var(--card);padding:40px 36px;transition:all .3s;position:relative;overflow:hidden}
+.svc-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0% 0%,var(--glow),transparent 60%);opacity:0;transition:opacity .3s}
+.svc-card:hover::before{opacity:1}
+.svc-card:hover{background:#141420}
+.svc-icon{width:52px;height:52px;background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:24px;transition:all .3s}
+.svc-card:hover .svc-icon{background:rgba(240,192,64,.15);border-color:rgba(240,192,64,.4);box-shadow:0 0 20px rgba(240,192,64,.2)}
+.svc-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;margin-bottom:12px;color:var(--white)}
+.svc-desc{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:20px;font-weight:300}
+.svc-tags{display:flex;flex-wrap:wrap;gap:7px}
+.svc-tag{background:rgba(240,192,64,.06);border:1px solid rgba(240,192,64,.12);color:var(--gold);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:600;letter-spacing:.3px}
+.svc-price{margin-top:24px;padding-top:20px;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+.svc-price strong{color:var(--white);font-size:1rem}
+
+/* ── PORTFOLIO ───────────────────────────────── */
+#portfolio{background:var(--black)}
+.portfolio-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:20px}
+.portfolio-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s;position:relative;cursor:pointer}
+.proj-card:hover{border-color:rgba(240,192,64,.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.proj-card.big{grid-column:span 7}
+.proj-card.small{grid-column:span 5}
+.proj-card.full{grid-column:span 12}
+.proj-img{width:100%;height:220px;object-fit:cover;display:block;background:linear-gradient(135deg,#111120,#1a1a30)}
+.proj-img-placeholder{width:100%;height:220px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden}
+.proj-img-placeholder::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--card),#16162a)}
+.proj-img-placeholder span{position:relative;z-index:1}
+.proj-body{padding:24px}
+.proj-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.proj-type{font-size:.68rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.15);padding:3px 10px;border-radius:100px}
+.proj-year{font-size:.72rem;color:var(--muted)}
+.proj-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.5px;margin-bottom:8px}
+.proj-desc{font-size:.83rem;color:var(--muted);line-height:1.6;font-weight:300}
+.proj-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.78rem;font-weight:600;color:var(--gold);text-decoration:none;transition:gap .2s}
+.proj-link:hover{gap:10px}
+
+/* ── PROCESS ─────────────────────────────────── */
+#process{background:var(--dark)}
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;margin-top:56px;position:relative}
+.process-grid::before{content:'';position:absolute;top:32px;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--border) 20%,var(--border) 80%,transparent)}
+.step{padding:0 24px 32px;text-align:center;position:relative}
+.step-num{width:64px;height:64px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--gold);position:relative;z-index:1;transition:all .3s}
+.step:hover .step-num{background:rgba(240,192,64,.1);border-color:rgba(240,192,64,.4);box-shadow:0 0 30px rgba(240,192,64,.2)}
+.step-title{font-weight:700;font-size:.95rem;margin-bottom:8px}
+.step-desc{font-size:.82rem;color:var(--muted);line-height:1.6;font-weight:300}
+
+/* ── VIDEOS ──────────────────────────────────── */
+#videos{background:var(--black)}
+.videos-intro{max-width:600px;margin-bottom:56px}
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.video-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s}
+.video-card:hover{border-color:rgba(240,192,64,.3);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.video-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.video-label{padding:16px 18px}
+.video-title{font-weight:600;font-size:.88rem;margin-bottom:4px}
+.video-sub{font-size:.76rem;color:var(--muted)}
+
+/* ── TEMOIGNAGES ─────────────────────────────── */
+#temoignages{background:var(--dark)}
+.temo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:48px}
+.temo-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;transition:all .3s}
+.temo-card:hover{border-color:rgba(240,192,64,.2)}
+.temo-stars{color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:14px}
+.temo-text{font-size:.88rem;color:#c0c0d0;line-height:1.75;margin-bottom:18px;font-weight:300;font-style:italic}
+.temo-author{display:flex;align-items:center;gap:12px}
+.temo-avatar{width:38px;height:38px;border-radius:50%;background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:var(--gold)}
+.temo-name{font-weight:600;font-size:.88rem}
+.temo-role{font-size:.75rem;color:var(--muted)}
+
+/* ── CONTACT ─────────────────────────────────── */
+#contact{background:var(--black);position:relative;overflow:hidden}
+#contact::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(240,192,64,.06) 0%,transparent 70%);pointer-events:none}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;z-index:1}
+.contact-info{padding-top:8px}
+.contact-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1;margin-bottom:20px}
+.contact-title span{color:var(--gold)}
+.contact-desc{font-size:.95rem;color:var(--muted);line-height:1.8;margin-bottom:36px;font-weight:300}
+.contact-links{display:flex;flex-direction:column;gap:14px}
+.contact-link{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--white);padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;transition:all .2s;font-size:.88rem;font-weight:500}
+.contact-link:hover{border-color:rgba(240,192,64,.3);background:#141420;transform:translateX(4px)}
+.contact-link-icon{width:36px;height:36px;background:rgba(240,192,64,.08);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.contact-link span{color:var(--muted);font-size:.78rem;display:block;margin-top:2px}
+
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:16px}
+.form-label{font-size:.74rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px;display:block}
+.form-input{width:100%;background:#0a0a10;border:1.5px solid var(--border);border-radius:10px;color:var(--white);font-family:'Outfit',sans-serif;font-size:.9rem;padding:12px 16px;outline:none;transition:border-color .2s;resize:vertical}
+.form-input:focus{border-color:rgba(240,192,64,.5)}
+textarea.form-input{min-height:110px}
+::placeholder{color:var(--muted);opacity:.5}
+.btn-submit{width:100%;background:var(--gold);color:#000;padding:15px;border-radius:12px;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;border:none;cursor:pointer;letter-spacing:.5px;transition:all .25s;margin-top:6px}
+.btn-submit:hover{background:var(--gold2);box-shadow:0 0 30px rgba(240,192,64,.4)}
+
+/* ── FOOTER ──────────────────────────────────── */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:40px;text-align:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;margin-bottom:10px}
+.footer-logo span{color:var(--gold)}
+.footer-sub{font-size:.8rem;color:var(--muted);margin-bottom:24px}
+.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.footer-links a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s;text-transform:uppercase;letter-spacing:.5px}
+.footer-links a:hover{color:var(--gold)}
+.footer-copy{font-size:.74rem;color:#3a3a50}
+
+/* ── REVEAL ANIMATIONS ───────────────────────── */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── MOBILE ──────────────────────────────────── */
+@media(max-width:900px){
+  nav{padding:16px 20px}
+  nav.scrolled{padding:12px 20px}
+  .nav-links,.nav-cta{display:none}
+  .nav-burger{display:flex}
+  section{padding:70px 20px}
+  #hero{padding:100px 20px 60px}
+  .proj-card.big,.proj-card.small,.proj-card.full{grid-column:span 12}
+  .contact-wrap{grid-template-columns:1fr;gap:40px}
+  .form-row{grid-template-columns:1fr}
+  .hero-stats{gap:24px}
+  .process-grid::before{display:none}
+}
+@media(max-width:600px){
+  .hero-title{font-size:clamp(3rem,14vw,5rem)}
+  .contact-form{padding:24px}
+}
+
+/* ── MOBILE MENU ─────────────────────────────── */
+.mobile-menu{position:fixed;inset:0;background:rgba(6,6,8,.97);z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transform:translateX(100%);transition:transform .3s ease}
+.mobile-menu.open{transform:none}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:2px;color:var(--white);text-decoration:none;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
+  <a href="#videos" onclick="toggleMenu()">Vidéos</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">NEX<span>ORA</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#process">Processus</a></li>
+    <li><a href="#videos">Vidéos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Devis gratuit →</a>
+  <div class="nav-burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">⚡ Disponible pour nouveaux projets</div>
+    <h1 class="hero-title">
+      <span class="line1">NEXORA</span>
+      <span class="line2">STUDIO</span>
+      <span class="line3">Bordeaux · France</span>
+    </h1>
+    <p class="hero-sub">
+      Agence web & automatisation IA pour <strong>PME ambitieuses</strong>.<br>
+      Sites premium. Chatbots intelligents. Stratégie digitale qui convertit.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">🚀 Démarrer un projet</a>
+      <a href="#portfolio" class="btn-ghost">Voir le portfolio →</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-n">15+</span><div class="stat-l">Projets livrés</div></div>
+      <div><span class="stat-n">100%</span><div class="stat-l">Clients satisfaits</div></div>
+      <div><span class="stat-n">48h</span><div class="stat-l">Délai de réponse</div></div>
+      <div><span class="stat-n">3</span><div class="stat-l">Expertises clés</div></div>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div class="section-tag">Ce que l'on fait</div>
+      <h2 class="section-title">NOS SERVICES</h2>
+      <p class="section-sub">Des solutions digitales complètes, pensées pour générer des résultats concrets pour votre entreprise.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="svc-card">
+        <div class="svc-icon">🌐</div>
+        <div class="svc-name">SITE WEB & LANDING PAGE</div>
+        <p class="svc-desc">Sites vitrines, e-commerce et landing pages ultra-rapides, optimisés pour la conversion et le SEO. Design sur mesure qui reflète votre marque.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">React / Next.js</span>
+          <span class="svc-tag">SEO</span>
+          <span class="svc-tag">Performance</span>
+          <span class="svc-tag">Mobile-first</span>
+        </div>
+        <div class="svc-price">À partir de <strong>500€</strong></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🤖</div>
+        <div class="svc-name">AUTOMATISATION IA</div>
+        <p class="svc-desc">Chatbots intelligents, automatisation de workflows, agents IA sur mesure. Gagnez du temps, réduisez vos coûts et offrez une expérience client 24/7.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">OpenAI / Claude</span>
+          <span class="svc-tag">n8n / Make</span>
+          <span class="svc-tag">Zapier</span>
+          <span class="svc-tag">Chatbot</span>
+        </div>
+        <div class="svc-price">À partir de <strong>800€</strong></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">📱</div>
+        <div class="svc-name">STRATÉGIE DIGITALE</div>
+        <p class="svc-desc">Gestion des réseaux sociaux, création de contenu IA, croissance organique. Votre présence digitale pilotée par la data et l'intelligence artificielle.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Instagram</span>
+          <span class="svc-tag">LinkedIn</span>
+          <span class="svc-tag">Contenu IA</span>
+          <span class="svc-tag">Analytics</span>
+        </div>
+        <div class="svc-price">À partir de <strong>300€/mois</strong></div>
+      </div>
+      <div class="svc-card" style="grid-column:1/-1;background:linear-gradient(120deg,#111118,#14141f);border-top:2px solid var(--gold)">
+        <div style="display:flex;align-items:flex-start;gap:32px;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <div class="svc-icon">🔍</div>
+            <div class="svc-name">PROSPECTION AUTOMATIQUE</div>
+            <p class="svc-desc">Trouvez des clients pendant que vous dormez. Système complet d'automatisation de la prospection : recherche de leads, messages personnalisés, relances et rapport quotidien à 7h00 dans votre boîte mail.</p>
+            <div class="svc-tags">
+              <span class="svc-tag">Instagram</span>
+              <span class="svc-tag">LinkedIn</span>
+              <span class="svc-tag">Malt</span>
+              <span class="svc-tag">Google</span>
+              <span class="svc-tag">Rapport H24</span>
+            </div>
+            <div class="svc-price">À partir de <strong>600€</strong></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;min-width:280px;flex:1">
+            <div style="background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.1);border-radius:14px;padding:16px">
+              <div style="font-size:1.4rem;margin-bottom:8px">🔍</div>
+              <div style="font-weight:600;font-size:.82rem;margin-bottom:4px">Recherche auto</div>
+              <div style="font-size:.76rem;color:var(--muted)">Scraping Instagram, LinkedIn, Malt & Google 24/7</div>
+            </div>
+            <div style="background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.1);border-radius:14px;padding:16px">
+              <div style="font-size:1.4rem;margin-bottom:8px">📤</div>
+              <div style="font-weight:600;font-size:.82rem;margin-bottom:4px">Messages ciblés</div>
+              <div style="font-size:.76rem;color:var(--muted)">Templates personnalisés par secteur et cible</div>
+            </div>
+            <div style="background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.1);border-radius:14px;padding:16px">
+              <div style="font-size:1.4rem;margin-bottom:8px">🤖</div>
+              <div style="font-weight:600;font-size:.82rem;margin-bottom:4px">Réponses auto IA</div>
+              <div style="font-size:.76rem;color:var(--muted)">Gestion des réponses et relances intelligent</div>
+            </div>
+            <div style="background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.1);border-radius:14px;padding:16px">
+              <div style="font-size:1.4rem;margin-bottom:8px">📊</div>
+              <div style="font-weight:600;font-size:.82rem;margin-bottom:4px">Rapport quotidien</div>
+              <div style="font-size:.76rem;color:var(--muted)">Email récap à 7h00 : prospects, taux, actions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="portfolio-header reveal">
+      <div>
+        <div class="section-tag">Réalisations</div>
+        <h2 class="section-title">PORTFOLIO</h2>
+      </div>
+      <a href="#contact" class="btn-ghost" style="align-self:center">Votre projet →</a>
+    </div>
+    <div class="portfolio-grid reveal">
+
+      <div class="proj-card big">
+        <div class="proj-img-placeholder"><span>🍽️</span></div>
+        <div class="proj-body">
+          <div class="proj-meta">
+            <span class="proj-type">Site Web</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <div class="proj-name">BARA — Restaurant Afro-Camerounais</div>
+          <p class="proj-desc">Site complet pour un restaurant de street food africain à Bordeaux. Menu interactif, intégration Google Maps, formulaire de contact, liens livraison (Uber Eats, Deliveroo) et gestion des avis Google.</p>
+          <a href="#contact" class="proj-link">Voir le projet ↗</a>
+        </div>
+      </div>
+
+      <div class="proj-card small">
+        <div class="proj-img-placeholder"><span>📚</span></div>
+        <div class="proj-body">
+          <div class="proj-meta">
+            <span class="proj-type">App Web</span>
+            <span class="proj-year">2025</span>
+          </div>
+          <div class="proj-name">RévisionIA — App d'apprentissage</div>
+          <p class="proj-desc">Application de révision intelligente avec OCR, extraction PDF, flashcards et quiz générés automatiquement depuis n'importe quelle fiche.</p>
+          <a href="https://notresiagroupe-crypto.github.io/revi/" target="_blank" class="proj-link">Voir en live ↗</a>
+        </div>
+      </div>
+
+      <div class="proj-card small">
+        <div class="proj-img-placeholder"><span>🤖</span></div>
+        <div class="proj-body">
+          <div class="proj-meta">
+            <span class="proj-type">Automatisation</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <div class="proj-name">Bot Crypto Copy-Trading</div>
+          <p class="proj-desc">Bot Python automatisé qui lit des signaux Telegram, exécute des ordres via l'API Coinbase et journalise en CSV. Déployé 24/7 sur Replit.</p>
+          <a href="#contact" class="proj-link">En savoir plus ↗</a>
+        </div>
+      </div>
+
+      <div class="proj-card big">
+        <div class="proj-img-placeholder"><span>🛒</span></div>
+        <div class="proj-body">
+          <div class="proj-meta">
+            <span class="proj-type">E-commerce + IA</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <div class="proj-name">Chatbot Service Client E-commerce</div>
+          <p class="proj-desc">Agent IA multilingue pour boutique e-commerce : gestion des FAQ, suivi de commandes, escalade automatique vers un humain. Intégration Shopify + Voiceflow.</p>
+          <a href="#contact" class="proj-link">Voir le projet ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <div class="section-tag" style="justify-content:center">Comment ça marche</div>
+      <h2 class="section-title">EN 4 ÉTAPES</h2>
+      <p class="section-sub" style="margin:0 auto">De l'idée au lancement, un processus simple, transparent et efficace.</p>
+    </div>
+    <div class="process-grid reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Consultation gratuite</div>
+        <p class="step-desc">On échange 30 min pour comprendre vos besoins, vos objectifs et votre budget.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Devis & stratégie</div>
+        <p class="step-desc">Je vous envoie une proposition claire avec les livrables, le planning et le tarif.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Création & livraisons</div>
+        <p class="step-desc">Développement en sprints avec des points réguliers et des ajustements en temps réel.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Lancement & suivi</div>
+        <p class="step-desc">Mise en ligne, formation et support continu pour maximiser vos résultats.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <div class="container">
+    <div class="videos-intro reveal">
+      <div class="section-tag">Inspiration & Expertise</div>
+      <h2 class="section-title">POURQUOI DIGITALISER</h2>
+      <p class="section-sub">Découvrez comment le web et l'IA transforment concrètement les entreprises comme la vôtre.</p>
+    </div>
+    <div class="videos-grid reveal">
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/rsSdk0LWBv4?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Agence automatisation IA"></iframe>
+        </div>
+        <div class="video-label">
+          <div class="video-title">Démarrer une agence d'automatisation IA</div>
+          <div class="video-sub">Le guide complet pour comprendre la valeur de l'IA pour votre business</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/RXgr3wGr3TM?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Agence web et IA"></iframe>
+        </div>
+        <div class="video-label">
+          <div class="video-title">Comment une agence web utilise vraiment l'IA</div>
+          <div class="video-sub">Usages concrets : devis automatiques, propositions commerciales, gain de temps</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/hXpadioOEP4?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Automatisation fiches produit IA"></iframe>
+        </div>
+        <div class="video-label">
+          <div class="video-title">L'automatisation IA pour votre e-commerce</div>
+          <div class="video-sub">Des fiches produits créées en quelques secondes grâce à l'intelligence artificielle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMOIGNAGES -->
+<section id="temoignages">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-tag" style="justify-content:center">Ce qu'ils disent</div>
+      <h2 class="section-title">CLIENTS SATISFAITS</h2>
+    </div>
+    <div class="temo-grid reveal">
+      <div class="temo-card">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">"Lionel a créé notre site en moins de 2 semaines. Design moderne, rapide et exactement ce qu'on voulait. On a eu des retours positifs de nos clients dès le lancement."</p>
+        <div class="temo-author">
+          <div class="temo-avatar">AB</div>
+          <div>
+            <div class="temo-name">Aminata B.</div>
+            <div class="temo-role">Gérante · BARA Restaurant, Bordeaux</div>
+          </div>
+        </div>
+      </div>
+      <div class="temo-card">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">"Le chatbot qu'il a développé répond à 80% des questions de nos clients automatiquement. On économise des heures de SAV chaque semaine. Retour sur investissement immédiat."</p>
+        <div class="temo-author">
+          <div class="temo-avatar">MC</div>
+          <div>
+            <div class="temo-name">Marc C.</div>
+            <div class="temo-role">Directeur · Boutique e-commerce</div>
+          </div>
+        </div>
+      </div>
+      <div class="temo-card">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">"Professionnalisme, réactivité et résultats. Notre visibilité sur Instagram a triplé en 2 mois avec la stratégie de contenu IA mise en place par NEXORA."</p>
+        <div class="temo-author">
+          <div class="temo-avatar">SL</div>
+          <div>
+            <div class="temo-name">Sophie L.</div>
+            <div class="temo-role">Fondatrice · Studio beauté, Bordeaux</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-info reveal">
+        <div class="section-tag">Parlons de votre projet</div>
+        <h2 class="contact-title">LANCEZ VOTRE<br><span>PROJET</span> MAINTENANT</h2>
+        <p class="contact-desc">Consultation initiale gratuite de 30 minutes. Je réponds sous 24h. Pas de jargon, des résultats concrets.</p>
+        <div class="contact-links">
+          <a href="https://t.me/lionel_web" target="_blank" class="contact-link">
+            <div class="contact-link-icon">✈️</div>
+            <div>
+              <div>Telegram</div>
+              <span>@lionel_web · Réponse rapide</span>
+            </div>
+          </a>
+          <a href="mailto:zambolionel043@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            <div>
+              <div>Email</div>
+              <span>zambolionel043@gmail.com</span>
+            </div>
+          </a>
+          <a href="https://instagram.com/id_lionel" target="_blank" class="contact-link">
+            <div class="contact-link-icon">📸</div>
+            <div>
+              <div>Instagram</div>
+              <span>@id_lionel · NEXORA Studio</span>
+            </div>
+          </a>
+          <a href="https://malt.fr/profile/lionelmanga" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🧑‍💻</div>
+            <div>
+              <div>Malt</div>
+              <span>lionelmanga · Freelance vérifié</span>
+            </div>
+          </a>
+          <a href="https://linkedin.com/in/lionelmanga" target="_blank" class="contact-link">
+            <div class="contact-link-icon">💼</div>
+            <div>
+              <div>LinkedIn</div>
+              <span>Lionel Manga Zambo</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="section-tag">Devis gratuit</div>
+        <form action="https://formspree.io/f/zambolionel043" method="POST" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Prénom *</label>
+              <input class="form-input" type="text" name="prenom" placeholder="Jean" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Entreprise</label>
+              <input class="form-input" type="text" name="entreprise" placeholder="Ma PME">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email *</label>
+            <input class="form-input" type="email" name="email" placeholder="jean@monentreprise.fr" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Service souhaité</label>
+            <select class="form-input" name="service" style="cursor:pointer">
+              <option value="">-- Choisir --</option>
+              <option>Site Web / Landing Page</option>
+              <option>Chatbot IA / Automatisation</option>
+              <option>Stratégie Digitale</option>
+              <option>Pack complet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Votre projet *</label>
+            <textarea class="form-input" name="message" placeholder="Décrivez votre projet, vos objectifs et votre budget estimé..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">🚀 Envoyer ma demande</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NEX<span>ORA</span></div>
+  <div class="footer-sub">Agence Web & IA · Bordeaux, France</div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#videos">Vidéos</a>
+    <a href="#contact">Contact</a>
+    <a href="https://malt.fr/profile/lionelmanga" target="_blank">Malt</a>
+    <a href="https://linkedin.com/in/lionelmanga" target="_blank">LinkedIn</a>
+  </div>
+  <div class="footer-copy">© 2025 NEXORA Studio · Lionel Manga Zambo · Tous droits réservés</div>
+</footer>
+
+<script>
+// Cursor
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',scrollY>60);
+});
+
+// Mobile menu
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Form
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=this.querySelector('.btn-submit');
+  btn.textContent='✓ Message envoyé !';
+  btn.style.background='#22c55e';
+  btn.style.boxShadow='0 0 30px rgba(34,197,94,.4)';
+  setTimeout(()=>{
+    btn.textContent='🚀 Envoyer ma demande';
+    btn.style.background='';btn.style.boxShadow='';
+    this.reset();
+  },4000);
+});
+</script>
+</body>
+</html>
