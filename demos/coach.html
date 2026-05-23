@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>APEX Training — Coach Sportif Bordeaux</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#08080a;color:#fff;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:3px;color:#e8ff00}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:.78rem;letter-spacing:.5px;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#e8ff00}
+.btn-start{background:#e8ff00;color:#08080a;padding:9px 24px;border-radius:6px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-decoration:none;transition:all .2s}
+.btn-start:hover{background:#fff;box-shadow:0 0 20px rgba(232,255,0,.3)}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 48px 80px;position:relative;overflow:hidden}
+.hero-noise{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.01) 2px,rgba(255,255,255,.01) 4px)}
+.hero-glow{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(232,255,0,.08),transparent 70%)}
+.hero-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-left .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,255,0,.08);border:1px solid rgba(232,255,0,.2);border-radius:4px;padding:6px 14px;font-size:.68rem;font-weight:700;color:#e8ff00;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:#e8ff00;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,8vw,7rem);line-height:.95;letter-spacing:1px;margin-bottom:20px}
+h1 span{color:#e8ff00;display:block}
+.hero-desc{font-size:.92rem;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:32px;font-weight:300}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.btn-yellow{background:#e8ff00;color:#08080a;padding:14px 28px;border-radius:6px;font-size:.84rem;font-weight:700;text-decoration:none;letter-spacing:.3px;transition:all .2s}
+.btn-yellow:hover{box-shadow:0 0 30px rgba(232,255,0,.35)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);padding:14px 28px;border-radius:6px;font-size:.84rem;text-decoration:none;transition:all .2s}
+.btn-ghost:hover{border-color:rgba(232,255,0,.4);color:#e8ff00}
+.hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden}
+.metric{background:#0d0d10;padding:20px;text-align:center}
+.metric-n{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:#e8ff00;line-height:1;display:block}
+.metric-l{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.5px;margin-top:4px;text-transform:uppercase}
+
+.hero-right{position:relative}
+.mockup-card{background:#111115;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:28px;margin-bottom:14px;transition:all .3s}
+.mockup-card:hover{border-color:rgba(232,255,0,.2);background:#14141a}
+.mc-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.mc-icon{width:40px;height:40px;background:rgba(232,255,0,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.mc-title{font-weight:600;font-size:.9rem}
+.mc-sub{font-size:.74rem;color:rgba(255,255,255,.35);margin-top:2px}
+.progress{height:4px;background:rgba(255,255,255,.08);border-radius:10px;overflow:hidden;margin-top:12px}
+.prog-fill{height:100%;background:linear-gradient(to right,#e8ff00,#a8cc00);border-radius:10px}
+.prog-label{display:flex;justify-content:space-between;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:6px}
+
+section{padding:80px 48px}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{font-size:.68rem;font-weight:700;color:#e8ff00;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-tag::before{content:'';width:20px;height:1px;background:#e8ff00}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:1px;margin-bottom:8px}
+.section-sub{font-size:.9rem;color:rgba(255,255,255,.4);line-height:1.7;font-weight:300}
+
+.programs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:48px}
+.program{background:#0d0d10;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:28px;transition:all .3s}
+.program.featured{border-color:rgba(232,255,0,.3);background:rgba(232,255,0,.03)}
+.program:hover{transform:translateY(-4px);border-color:rgba(232,255,0,.2)}
+.prog-badge{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:100px;margin-bottom:18px;display:inline-block}
+.pb-standard{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4)}
+.pb-popular{background:rgba(232,255,0,.12);color:#e8ff00}
+.pb-elite{background:rgba(255,100,50,.12);color:#ff6432}
+.prog-name{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;margin-bottom:8px}
+.prog-price{font-size:1.6rem;font-weight:700;margin-bottom:4px}
+.prog-price span{font-size:.8rem;color:rgba(255,255,255,.35);font-weight:300}
+.prog-desc{font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:20px}
+.prog-features{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.prog-features li{font-size:.8rem;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:8px}
+.prog-features li::before{content:'✓';color:#e8ff00;font-weight:700;font-size:.75rem}
+.btn-prog{display:block;text-align:center;padding:12px;border-radius:8px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s}
+.bp-std{background:rgba(255,255,255,.06);color:rgba(255,255,255,.7)}
+.bp-std:hover{background:rgba(255,255,255,.1)}
+.bp-pop{background:#e8ff00;color:#08080a}
+.bp-pop:hover{box-shadow:0 0 20px rgba(232,255,0,.3)}
+
+footer{background:#040405;border-top:1px solid rgba(255,255,255,.06);padding:40px 48px;text-align:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:4px;color:#e8ff00;margin-bottom:6px}
+.footer-sub{font-size:.74rem;color:rgba(255,255,255,.25);letter-spacing:.5px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">APEX</div>
+  <ul class="nav-links">
+    <li><a href="#">Programmes</a></li>
+    <li><a href="#">Résultats</a></li>
+    <li><a href="#">À propos</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <a href="#" class="btn-start">Commencer</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="badge"><span class="badge-dot"></span>Bordeaux · En ligne</div>
+      <h1>FORGE TON<br><span>CORPS IDÉAL</span></h1>
+      <p class="hero-desc">Coaching personnalisé, plans nutrition sur mesure et suivi en temps réel. Résultats garantis en 12 semaines ou remboursé.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-yellow">Démarrer gratuitement</a>
+        <a href="#" class="btn-ghost">Voir les résultats →</a>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric"><span class="metric-n">340+</span><div class="metric-l">Clients transformés</div></div>
+        <div class="metric"><span class="metric-n">12</span><div class="metric-l">Semaines max</div></div>
+        <div class="metric"><span class="metric-n">98%</span><div class="metric-l">Satisfaction</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="mockup-card">
+        <div class="mc-head"><div class="mc-icon">🏋️</div><div><div class="mc-title">Séance du jour</div><div class="mc-sub">Force — Niveau intermédiaire</div></div></div>
+        <div class="progress"><div class="prog-fill" style="width:68%"></div></div>
+        <div class="prog-label"><span>Progression</span><span>68%</span></div>
+      </div>
+      <div class="mockup-card">
+        <div class="mc-head"><div class="mc-icon">🥗</div><div><div class="mc-title">Nutrition aujourd'hui</div><div class="mc-sub">2 350 / 2 800 kcal</div></div></div>
+        <div class="progress"><div class="prog-fill" style="width:84%"></div></div>
+        <div class="prog-label"><span>Calories</span><span>84%</span></div>
+      </div>
+      <div class="mockup-card">
+        <div class="mc-head"><div class="mc-icon">📈</div><div><div class="mc-title">Poids ce mois</div><div class="mc-sub">-2.4 kg · Objectif : -5 kg</div></div></div>
+        <div class="progress"><div class="prog-fill" style="width:48%"></div></div>
+        <div class="prog-label"><span>Progression</span><span>48%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="section-tag">Programmes</div>
+    <h2>CHOISIS TON NIVEAU</h2>
+    <p class="section-sub">Des programmes adaptés à tous les profils, du débutant à l'athlète confirmé.</p>
+    <div class="programs-grid">
+      <div class="program">
+        <div class="prog-badge pb-standard">Standard</div>
+        <div class="prog-name">STARTER</div>
+        <div class="prog-price">97€ <span>/ mois</span></div>
+        <p class="prog-desc">Pour les débutants qui veulent poser des bases solides et commencer à transformer leur corps.</p>
+        <ul class="prog-features">
+          <li>Programme sur mesure</li><li>Suivi hebdomadaire</li><li>Accès app mobile</li><li>Support par email</li>
+        </ul>
+        <a href="#" class="btn-prog bp-std">Commencer</a>
+      </div>
+      <div class="program featured">
+        <div class="prog-badge pb-popular">⚡ Populaire</div>
+        <div class="prog-name">ELITE</div>
+        <div class="prog-price">197€ <span>/ mois</span></div>
+        <p class="prog-desc">Pour ceux qui veulent des résultats rapides avec un accompagnement complet et personnalisé.</p>
+        <ul class="prog-features">
+          <li>Tout Starter inclus</li><li>Séances live 2x/semaine</li><li>Plan nutrition détaillé</li><li>Suivi quotidien WhatsApp</li>
+        </ul>
+        <a href="#" class="btn-prog bp-pop">Je veux ça</a>
+      </div>
+      <div class="program">
+        <div class="prog-badge pb-elite">🔥 Premium</div>
+        <div class="prog-name">APEX VIP</div>
+        <div class="prog-price">397€ <span>/ mois</span></div>
+        <p class="prog-desc">Accompagnement total, résultats garantis. Pour ceux qui veulent le meilleur, sans compromis.</p>
+        <ul class="prog-features">
+          <li>Tout Elite inclus</li><li>Séances live illimitées</li><li>Analyse corporelle mensuelle</li><li>Accès prioritaire 24/7</li>
+        </ul>
+        <a href="#" class="btn-prog bp-std">Postuler</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">APEX</div>
+  <div class="footer-sub">Bordeaux · apex-training.fr · @apex_training</div>
+</footer>
+</body>
+</html>
