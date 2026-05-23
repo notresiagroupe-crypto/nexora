@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Le Clos Saint-Jean — Restaurant Gastronomique</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Jost',sans-serif;background:#0c0a07;color:#f5f0e8;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(12,10,7,.9),transparent)}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:3px;color:#c9a96e}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,.6);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#c9a96e}
+.btn-res{border:1px solid #c9a96e;color:#c9a96e;padding:8px 22px;border-radius:2px;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all .2s}
+.btn-res:hover{background:#c9a96e;color:#0c0a07}
+
+.hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a1208 0%,#0c0a07 40%,#1a1008 100%)}
+.hero-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 2px 2px,rgba(201,169,110,.06) 1px,transparent 0);background-size:32px 32px}
+.hero-img{position:absolute;right:0;top:0;bottom:0;width:55%;background:linear-gradient(to left,rgba(12,10,7,0) 0%,#0c0a07 100%),linear-gradient(135deg,#2a1a08,#1a1208);opacity:.7}
+.hero-deco{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(201,169,110,.06)}
+.hero-content{position:relative;z-index:1}
+.hero-pre{font-size:.7rem;letter-spacing:5px;text-transform:uppercase;color:#c9a96e;margin-bottom:20px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6rem);line-height:1.05;font-weight:400;margin-bottom:8px}
+h1 em{font-style:italic;color:#c9a96e}
+.hero-sub{font-size:.9rem;letter-spacing:2px;color:rgba(245,240,232,.5);margin-bottom:40px;text-transform:uppercase}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-gold{background:#c9a96e;color:#0c0a07;padding:14px 36px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .2s}
+.btn-gold:hover{background:#d4b97e}
+.btn-outline{border:1px solid rgba(201,169,110,.4);color:#c9a96e;padding:14px 36px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s}
+.btn-outline:hover{border-color:#c9a96e;background:rgba(201,169,110,.05)}
+
+.divider{display:flex;align-items:center;gap:16px;justify-content:center;margin:0 auto;max-width:300px;padding:60px 0 40px}
+.div-line{flex:1;height:1px;background:rgba(201,169,110,.2)}
+.div-icon{color:#c9a96e;font-size:.8rem;letter-spacing:3px}
+
+section{padding:80px 48px}
+.section-center{text-align:center;max-width:800px;margin:0 auto}
+h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;margin-bottom:16px}
+h2 em{color:#c9a96e;font-style:italic}
+.lead{font-size:1rem;color:rgba(245,240,232,.6);line-height:1.9;font-weight:300}
+
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.1);margin-top:48px}
+.menu-cat{background:#0c0a07;padding:36px 28px;transition:background .3s}
+.menu-cat:hover{background:#0f0c08}
+.cat-name{font-family:'Playfair Display',serif;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:#c9a96e;margin-bottom:20px}
+.menu-item{padding:10px 0;border-bottom:1px solid rgba(201,169,110,.08)}
+.menu-item:last-child{border:none}
+.item-top{display:flex;justify-content:space-between;align-items:baseline}
+.item-name{font-size:.9rem;font-weight:400}
+.item-price{font-family:'Playfair Display',serif;color:#c9a96e;font-size:.85rem}
+.item-desc{font-size:.74rem;color:rgba(245,240,232,.4);margin-top:3px;font-style:italic}
+
+.hours-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:40px}
+.hour-card{background:#111009;border:1px solid rgba(201,169,110,.1);padding:24px;text-align:center;border-radius:2px}
+.hour-day{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:#c9a96e;margin-bottom:8px}
+.hour-time{font-family:'Playfair Display',serif;font-size:1.1rem}
+.hour-closed{color:rgba(245,240,232,.3)}
+
+footer{background:#080705;border-top:1px solid rgba(201,169,110,.1);padding:40px 48px;text-align:center}
+.footer-logo{font-family:'Playfair Display',serif;font-size:2rem;letter-spacing:4px;color:#c9a96e;margin-bottom:8px}
+.footer-sub{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(245,240,232,.3)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">LE CLOS SAINT-JEAN</div>
+  <ul class="nav-links">
+    <li><a href="#">Menu</a></li>
+    <li><a href="#">Le Chef</a></li>
+    <li><a href="#">Événements</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#" class="btn-res">Réserver</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-img"></div>
+  <div class="hero-deco"></div>
+  <div class="hero-content">
+    <div class="hero-pre">✦ Bordeaux, depuis 2012 ✦</div>
+    <h1>Une table<br><em>d'exception</em></h1>
+    <div class="hero-sub">Cuisine gastronomique · Terroir aquitain</div>
+    <div class="hero-btns">
+      <a href="#" class="btn-gold">Réserver une table</a>
+      <a href="#" class="btn-outline">Découvrir le menu</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0f0c08">
+  <div class="section-center">
+    <div class="divider"><div class="div-line"></div><div class="div-icon">✦</div><div class="div-line"></div></div>
+    <h2>L'art de la <em>table</em></h2>
+    <p class="lead">Au Clos Saint-Jean, chaque assiette raconte une histoire. Le Chef Antoine Mercier sublime les produits du terroir bordelais avec une créativité audacieuse, pour une expérience gastronomique unique.</p>
+  </div>
+  <div class="menu-grid" style="max-width:960px;margin:48px auto 0">
+    <div class="menu-cat">
+      <div class="cat-name">Entrées</div>
+      <div class="menu-item"><div class="item-top"><span class="item-name">Foie gras poêlé</span><span class="item-price">28€</span></div><div class="item-desc">Chutney de figue, brioche maison</div></div>
+      <div class="menu-item"><div class="item-top"><span class="item-name">Saint-Jacques snackées</span><span class="item-price">32€</span></div><div class="item-desc">Velouté de céleri, huile de truffe</div></div>
+      <div class="menu-item"><div class="item-top"><span class="item-name">Tartare de bœuf wagyu</span><span class="item-price">26€</span></div><div class="item-desc">Condiments maison, chips de parmesan</div></div>
+    </div>
+    <div class="menu-cat">
+      <div class="cat-name">Plats</div>
+      <div class="menu-item"><div class="item-top"><span class="item-name">Filet de bœuf Rossini</span><span class="item-price">58€</span></div><div class="item-desc">Sauce Périgueux, légumes du moment</div></div>
+      <div class="menu-item"><div class="item-top"><span class="item-name">Sole meunière</span><span class="item-price">46€</span></div><div class="item-desc">Beurre citron, câpres, herbes fraîches</div></div>
+      <div class="menu-item"><div class="item-top"><span class="item-name">Pigeon rôti en croûte</span><span class="item-price">52€</span></div><div class="item-desc">Jus corsé, purée truffée</div></div>
+    </div>
+    <div class="menu-cat">
+      <div class="cat-name">Desserts</div>
+      <div class="menu-item"><div class="item-top"><span class="item-name">Soufflé au Grand Marnier</span><span class="item-price">18€</span></div><div class="item-desc">Crème anglaise à la vanille</div></div>
+      <div class="menu-item"><div class="item-top"><span class="item-name">Tarte Tatin revisitée</span><span class="item-price">16€</span></div><div class="item-desc">Caramel beurre salé, glace normande</div></div>
+      <div class="menu-item"><div class="item-top"><span class="item-name">Plateau de fromages</span><span class="item-price">22€</span></div><div class="item-desc">Sélection affinée, confiture maison</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-center">
+    <h2>Nos <em>horaires</em></h2>
+    <p class="lead">Nous vous accueillons du mardi au dimanche, midi et soir. Réservation conseillée.</p>
+    <div class="hours-grid">
+      <div class="hour-card"><div class="hour-day">Lundi</div><div class="hour-time hour-closed">Fermé</div></div>
+      <div class="hour-card"><div class="hour-day">Mar — Ven</div><div class="hour-time">12h — 14h30<br>19h — 22h</div></div>
+      <div class="hour-card"><div class="hour-day">Samedi</div><div class="hour-time">19h — 22h30</div></div>
+      <div class="hour-card"><div class="hour-day">Dimanche</div><div class="hour-time">12h — 15h</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">✦</div>
+  <div class="footer-logo" style="font-size:1.2rem;margin-bottom:4px">LE CLOS SAINT-JEAN</div>
+  <div class="footer-sub">12 rue du Palais Gallien · 33000 Bordeaux · 05 56 XX XX XX</div>
+</footer>
+</body>
+</html>
