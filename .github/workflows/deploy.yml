@@ -11,26 +11,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Netlify CLI
-        run: npm install -g netlify-cli
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Create site if needed & Deploy
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli@latest
+
+      - name: Deploy to Netlify
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
-          # Try to deploy to existing site, create if not exists
-          netlify deploy \
+          set -e
+          echo "Creating/getting Netlify site..."
+          
+          # Create site (ignore error if already exists)
+          SITE_OUTPUT=$(netlify sites:create \
+            --name nexora-studio \
+            --auth "$NETLIFY_AUTH_TOKEN" 2>&1) || true
+          echo "$SITE_OUTPUT"
+          
+          # Get site ID
+          SITE_ID=$(netlify api listSites \
             --auth "$NETLIFY_AUTH_TOKEN" \
-            --dir "." \
-            --site "nexora-studio" \
-            --prod \
-            --message "NEXORA Studio deploy" 2>&1 || \
-          netlify sites:create \
-            --auth "$NETLIFY_AUTH_TOKEN" \
-            --name "nexora-studio" && \
-          netlify deploy \
-            --auth "$NETLIFY_AUTH_TOKEN" \
-            --dir "." \
-            --site "nexora-studio" \
-            --prod \
-            --message "NEXORA Studio deploy"
+            --data '{"name":"nexora-studio"}' 2>/dev/null | \
+            python3 -c "import sys,json; sites=json.load(sys.stdin); ids=[s['id'] for s in sites if s.get('name')=='nexora-studio']; print(ids[0] if ids else '')" 2>/dev/null || true)
+          
+          echo "Site ID: $SITE_ID"
+          
+          if [ -z "$SITE_ID" ]; then
+            # Deploy without site ID (will create new)
+            netlify deploy --prod --dir . --auth "$NETLIFY_AUTH_TOKEN"
+          else
+            netlify deploy --prod --dir . --site "$SITE_ID" --auth "$NETLIFY_AUTH_TOKEN"
+          fi
