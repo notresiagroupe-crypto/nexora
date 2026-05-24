@@ -11,10 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-name: nexora-studio
-          vercel-args: '--prod'
-          working-directory: ./
+      - name: Deploy to Vercel
+        run: |
+          npm install -g vercel@latest
+          vercel --prod \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --yes \
+            --name nexora-studio 2>&1
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
