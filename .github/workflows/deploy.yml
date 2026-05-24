@@ -14,9 +14,9 @@ jobs:
       - name: Deploy to Vercel
         run: |
           npm install -g vercel@latest
-          vercel --prod \
+          vercel deploy --prod \
             --token=${{ secrets.VERCEL_TOKEN }} \
-            --yes \
-            --name nexora-studio 2>&1
+            --yes 2>&1
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ""

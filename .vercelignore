@@ -1,0 +1,7 @@
+backend/
+frontend/
+memory/
+tests/
+test_reports/
+node_modules/
+.git/
