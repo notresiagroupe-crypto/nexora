@@ -1,4 +1,4 @@
-name: Deploy to Netlify
+name: Deploy to Vercel
 
 on:
   push:
@@ -16,33 +16,18 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Netlify CLI
-        run: npm install -g netlify-cli@latest
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
 
-      - name: Deploy to Netlify
+      - name: Deploy to Vercel
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
         run: |
-          set -e
-          echo "Creating/getting Netlify site..."
-          
-          # Create site (ignore error if already exists)
-          SITE_OUTPUT=$(netlify sites:create \
+          vercel deploy --prod \
+            --token "$VERCEL_TOKEN" \
+            --scope "$VERCEL_ORG_ID" \
             --name nexora-studio \
-            --auth "$NETLIFY_AUTH_TOKEN" 2>&1) || true
-          echo "$SITE_OUTPUT"
-          
-          # Get site ID
-          SITE_ID=$(netlify api listSites \
-            --auth "$NETLIFY_AUTH_TOKEN" \
-            --data '{"name":"nexora-studio"}' 2>/dev/null | \
-            python3 -c "import sys,json; sites=json.load(sys.stdin); ids=[s['id'] for s in sites if s.get('name')=='nexora-studio']; print(ids[0] if ids else '')" 2>/dev/null || true)
-          
-          echo "Site ID: $SITE_ID"
-          
-          if [ -z "$SITE_ID" ]; then
-            # Deploy without site ID (will create new)
-            netlify deploy --prod --dir . --auth "$NETLIFY_AUTH_TOKEN"
-          else
-            netlify deploy --prod --dir . --site "$SITE_ID" --auth "$NETLIFY_AUTH_TOKEN"
-          fi
+            --yes \
+            --cwd . \
+            2>&1
