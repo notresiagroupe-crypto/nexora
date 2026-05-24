@@ -11,9 +11,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy to Vercel
+      - name: Deploy and capture output
         run: |
           npm install -g vercel@latest
           vercel deploy --prod \
             --token=${{ secrets.VERCEL_TOKEN }} \
-            --yes 2>&1
+            --yes 2>&1 | tee /tmp/vercel_output.txt
+          echo "EXIT: $?" >> /tmp/vercel_output.txt
+          
+      - name: Show output
+        if: always()
+        run: cat /tmp/vercel_output.txt || echo "No output file"
+        
+      - name: Save output as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vercel-output
+          path: /tmp/vercel_output.txt
